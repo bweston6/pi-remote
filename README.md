@@ -103,7 +103,7 @@ The `keyCodes` and `keyNames` are recorded in `irBlaster.py`:
 	
 	The variable names themselves don't matter, but you will call them later via the webpage. Ensure that they are assigned as strings and not as hex like in the file.
 	
-### Changing the Remote Webpage
+### Modifying the Remote Webpage
 There is no super simple way of making your own remote page but it is pretty easy to get a hang of how flask works and replace the buttons with your own.
 
 Start by looking at `server.py`:
