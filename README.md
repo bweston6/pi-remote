@@ -15,7 +15,7 @@ To complete this installation I used [Pi OS Lite](https://downloads.raspberrypi.
 
 1. Uncomment the following lines in `/boot/config.txt` replacing the first with your IR receiver pin and the second with your IR transmitter pin:
 
-	```
+	```ini
 	# Uncomment this to enable infrared communication.
 	dtoverlay=gpio-ir,gpio_pin=18
 	dtoverlay=gpio-ir-tx,gpio_pin=17
@@ -30,7 +30,7 @@ To complete this installation I used [Pi OS Lite](https://downloads.raspberrypi.
 
 	This is also a good time to update the Pi:
 
-	```
+	```shell
 	$ sudo apt update
 	$ sudo apt full-upgrade python3-flask python3-waitress python3-rpi.gpio ir-keytable
 	```
@@ -59,7 +59,7 @@ To complete this installation I used [Pi OS Lite](https://downloads.raspberrypi.
 	
 	To notify `systemd` of the new service, enable and start it run the following:
 	
-	```
+	```shell
 	$ sudo systemctl daemon-reload
 	$ sudo systemctl enable --now webRemote.service
 	```
@@ -71,7 +71,7 @@ To complete this installation I used [Pi OS Lite](https://downloads.raspberrypi.
 ### Receiving
 This code works great if you have a JVC LT40C550 TV, but you probably don't. To test that your receiver is working and to note the codes and protocol run the following:
 
-```
+```shell
 $ sudo ir-keytable -t -p all
 ```
 
@@ -85,7 +85,7 @@ To manually send a key-code refer to the output of `ir-keytable` and take note o
 
 To transmit this information, use the following command:
 
-```
+```shell
 $ sudo ir-ctl -S nec:0xa1f -d /dev/lirc0
 ```
 
