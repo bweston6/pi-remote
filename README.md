@@ -22,7 +22,7 @@ To complete this installation I used [Pi OS Lite](https://downloads.raspberrypi.
 	```
 	
 	* My pins are 18 for receive and 17 for send. 
-	* You don't need to have a receiver but it will help if you need [register your own keys](#receiving-rey-rodes-and-customisation).
+	* You don't need to have a receiver but it will help if you need [register your own keys](#receiving-key-codes-and-customisation).
 
 1. To run the Flask server, and interface with the GPIO, you will have to install some Python packages.
 
