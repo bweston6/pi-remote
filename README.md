@@ -1,5 +1,5 @@
 # Raspberry Pi IR Transmitter Web Interface
-This project uses Python's `Flask` to host a remote web interface, which uses `ir-ctl` to emit remote codes from an infrared LED.
+This project uses Python's `Flask` to host a TV-remote web interface, which uses `ir-ctl` to emit remote codes from an infrared LED.
 
 All that means that you can use any device on the local network as a remote control for your TV, or other IR device. 
 
@@ -103,8 +103,8 @@ The `keyCodes` and `keyNames` are recorded in `irBlaster.py`:
 	
 	The variable names themselves don't matter, but you will call them later via the webpage. Ensure that they are assigned as strings and not as hex like in the file.
 	
-### Modifying the Remote Webpage
-There is no super simple way of making your own remote page but it is pretty easy to get a hang of how flask works and replace the buttons with your own.
+### Modifying the TV-Remote Webpage
+There is no super simple way of making your own TV-remote page but it is pretty easy to get a hang of how flask works and replace the buttons with your own.
 
 Start by looking at `server.py`:
 
