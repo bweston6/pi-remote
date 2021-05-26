@@ -1,0 +1,75 @@
+<!doctype html>
+<head>
+	<title>Web Remote - Numbers</title>
+	<meta charset=utf-8>
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+	<link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+	<link rel="mask-icon" href="{{ url_for('static', filename='safari-pinned-tab.svg') }}" color="#5bbad5">
+	<meta name="apple-mobile-web-app-title" content="TV Remote">
+	<meta name="application-name" content="TV Remote">
+	<meta name="msapplication-TileColor" content="#2d89ef">
+	<meta name="theme-color" content="#ffffff">
+	<script src="https://kit.fontawesome.com/b1e088a62d.js" crossorigin="anonymous"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<style>
+		.button {
+			width: 100%;
+			height: 100%;
+			font-family: sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #404040;
+			color: white;
+			text-decoration: none;
+			font-size: 6vmin;
+			margin: auto;
+			touch-action: manipulation;
+		}
+		.disableGestures {
+			touch-action: none;
+		}
+	</style>
+	<script type=text/javascript>
+		$(function() {
+			$('[id^=KEY]').bind('click', function() {
+				$.getJSON('/query/' + $(this).attr("id"),
+					function(data) {
+					});
+				return false;
+			});
+		});
+	</script>
+</head>
+<body class="disableGestures">
+	<table style="height:100%;width:100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0; table-layout: fixed;">
+		<tbody>
+			<tr style="height:16%">
+			</tr>
+			<tr style="height:16%">
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="KEY_1" class="button" style="border-top-left-radius: 0.5em">1</a></td>
+				<td><a href=# id="KEY_2" class="button">2</a></td>
+				<td><a href=# id="KEY_3" class="button" style="border-top-right-radius: 0.5em">3</a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="KEY_4" class="button">4</a></td>
+				<td><a href=# id="KEY_5" class="button">5</a></td>
+				<td><a href=# id="KEY_6" class="button">6</a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="KEY_7" class="button" style="border-bottom-left-radius: 0.5em">7</a></td>
+				<td><a href=# id="KEY_8" class="button">8</a></td>
+				<td><a href=# id="KEY_9" class="button" style="border-bottom-right-radius: 0.5em">9</a></td>
+			</tr>
+			<tr style="height:16%">
+				<td>&nbsp;</td>
+				<td><a href=# id="KEY_0" class="button" style="border-radius: 0 0 0.5em 0.5em">0</a></td>
+				<td><a href="/" class="button" style="background-color: LightGray; color: #404040; border-radius: 0.5em 0.5em 0.5em 0.5em"><i class="fas fa-caret-left"></i></i></a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>	

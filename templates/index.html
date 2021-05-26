@@ -1,0 +1,97 @@
+<!doctype html>
+<head>
+	<title>Web Remote</title>
+	<meta charset=utf-8>
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+	<link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+	<link rel="mask-icon" href="{{ url_for('static', filename='safari-pinned-tab.svg') }}" color="#5bbad5">
+	<meta name="apple-mobile-web-app-title" content="TV Remote">
+	<meta name="application-name" content="TV Remote">
+	<meta name="msapplication-TileColor" content="#2d89ef">
+	<meta name="theme-color" content="#ffffff">
+	<script src="https://kit.fontawesome.com/b1e088a62d.js" crossorigin="anonymous"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<style>
+		.button {
+			width: 100%;
+			height: 100%;
+			font-family: sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #404040;
+			color: white;
+			text-decoration: none;
+			font-size: 6vmin;
+			margin: auto;
+			border-radius: 0.5em;
+			touch-action: manipulation;
+		}
+		.disableGestures {
+			touch-action: none;
+		}
+		.roundTop{
+			border-radius: 0.5em 0.5em 0 0;
+		}
+		.roundBottom{
+			border-radius: 0 0 0.5em 0.5em;
+		}
+		.roundLeft{
+			border-radius: 0.5em 0 0 0.5em;
+		}
+		.roundRight{
+			border-radius: 0 0.5em 0.5em 0;
+		}
+		.dontRound{
+			border-radius: 0;
+		}
+	</style>
+	<script type=text/javascript>
+		$(function() {
+			$('[id^=KEY]').bind('click', function() {
+				$.getJSON('/query/' + $(this).attr("id"),
+					function(data) {
+					});
+				return false;
+			});
+		});
+	</script>
+</head>
+<body class="disableGestures">
+	<table style="height:100%;width:100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0; table-layout: fixed;">
+		<tbody>
+			<tr style="height:16%">
+				<td><a href=# id="KEY_MUTE" class="button"><i class="fas fa-volume-mute"></i></a></td>
+				<td><a href=# id="KEY_GUIDE" class="button">Guide</i></a></td>
+				<td><a href=# id="KEY_POWER" class="button" style="color:red"><i class="fas fa-power-off"></i></a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="KEY_INFO" class="button"><i class="fas fa-info"></i></a></td>
+				<td><a href=# id="KEY_UP" class="button roundTop" style="background-color: black;"><i class="fas fa-arrow-up"></i></a></td>
+				<td><a href=# id="KEY_CYCLEWINDOWS" class="button">Source</i></a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="KEY_LEFT" class="button roundLeft" style="background-color: black;"><i class="fas fa-arrow-left"></i></a></td>
+				<td><a href=# id="KEY_OK" class="button dontRound" style="background-color: black;">OK</i></a></td>
+				<td><a href=# id="KEY_RIGHT" class="button roundRight" style="background-color: black;"><i class="fas fa-arrow-right"></i></a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="KEY_BACK" class="button"><i class="fas fa-undo"></i></a></td>
+				<td><a href=# id="KEY_DOWN" class="button roundBottom" style="background-color: black;"><i class="fas fa-arrow-down"></i></a></td>
+				<td><a href=# id="KEY_EXIT" class="button"><i class="fas fa-sign-out-alt"></i></a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="KEY_VOLUMEUP" class="button roundTop"><i class="fas fa-volume-up"></i></a></td>
+				<td><a href="/numbers" class="button roundTop" style="background-color: LightGray; color: #404040;"><i class="fas fa-sort-numeric-up"></i></a></td>
+				<td><a href=# id="KEY_CHANNELUP" class="button roundTop"><i class="fas fa-plus"></i></a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="KEY_VOLUMEDOWN" class="button roundBottom"><i class="fas fa-volume-down"></i></a></td>
+				<td><a href="/extra" class="button roundBottom" style="background-color: LightGray; color: #404040;">Extra</a></td>
+				<td><a href=# id="KEY_CHANNELDOWN" class="button roundBottom"><i class="fas fa-minus"></i></a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>	
