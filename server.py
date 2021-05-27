@@ -17,6 +17,14 @@ def numbers():
 @app.route('/extra')
 def extra():
 	return render_template('extra.html')
+	
+@app.route('/light')
+def light():
+	return render_template('light.html')
+
+@app.route('/disco')
+def disco():
+	return render_template('disco.html')
 
 @app.route('/query/<keyName>')
 def keyHandler(keyName):

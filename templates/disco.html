@@ -1,0 +1,100 @@
+<!doctype html>
+<head>
+	<title>Web Remote - Disco Ball</title>
+	<meta charset=utf-8>
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+	<link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+	<link rel="mask-icon" href="{{ url_for('static', filename='safari-pinned-tab.svg') }}" color="#5bbad5">
+	<meta name="apple-mobile-web-app-title" content="TV Remote">
+	<meta name="application-name" content="TV Remote">
+	<meta name="msapplication-TileColor" content="#2d89ef">
+	<meta name="theme-color" content="#ffffff">
+	<script src="https://kit.fontawesome.com/b1e088a62d.js" crossorigin="anonymous"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<style>
+		.button {
+			width: 100%;
+			height: 100%;
+			font-family: sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #404040;
+			color: white;
+			text-decoration: none;
+			font-size: 6vmin;
+			margin: auto;
+			border-radius: 0.5em;
+			touch-action: manipulation;
+		}
+		.disableGestures {
+			touch-action: none;
+		}
+		.roundTop{
+			border-radius: 0.5em 0.5em 0 0;
+		}
+		.roundBottom{
+			border-radius: 0 0 0.5em 0.5em;
+		}
+		.roundLeft{
+			border-radius: 0.5em 0 0 0.5em;
+		}
+		.roundRight{
+			border-radius: 0 0.5em 0.5em 0;
+		}
+		.dontRound{
+			border-radius: 0;
+		}
+		.black{
+			background-color: black;
+		}
+	</style>
+	<script type=text/javascript>
+		$(function() {
+			$('[id^=DISCO]').bind('click', function() {
+				$.getJSON('/query/' + $(this).attr("id"),
+					function(data) {
+					});
+				return false;
+			});	
+		});		
+	</script>
+</head>
+<body class="disableGestures">
+	<table style="height:100%;width:100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0; table-layout: fixed;">
+		<tbody>
+			<tr style="height:16%">
+				<td><a href=# id="DISCO_DMX" class="button">DMX</i></a></td>
+				<td><a href=# id="DISCO_SPIN" class="button">Motor</i></a></td>
+				<td><a href=# id="DISCO_POWER" class="button" style="color:red"><i class="fas fa-power-off"></i></a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="DISCO_MUSIC_1" class="button roundLeft">Music 1</i></a></td>
+				<td><a href=# id="DISCO_MUSIC_2" class="button dontRound">Music 2</i></a></td>
+				<td><a href=# id="DISCO_MUSIC_3" class="button roundRight">Music 3</i></a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="DISCO_A1" class="button black" style="border-radius: 0.5em 0 0 0">A1</i></a></td>
+				<td><a href=# id="DISCO_A2" class="button dontRound black">A2</i></a></td>
+				<td><a href=# id="DISCO_A3" class="button black" style="border-radius: 0 0.5em 0 0">A3</i></a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="DISCO_A4" class="button dontRound black">A4</i></a></td>
+				<td><a href=# id="DISCO_A5" class="button dontRound black">A5</i></a></td>
+				<td><a href=# id="DISCO_A6" class="button black" style="border-radius: 0 0 0.5em 0">A6</i></a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="DISCO_A7" class="button roundBottom black">A7</i></a></td>
+				<td><a href=# id="DISCO_FLASH" class="button">Flash</i></a></td>
+				<td><a href=/ class="button roundTop" style="background-color: LightGray; color: #404040"><i class="fas fa-home"></i></a></td>
+			</tr>
+			<tr style="height:16%">
+				<td><a href=# id="DISCO_SPEED_UP" class="button roundLeft"><i class="fas fa-plus"></i></a></td>
+				<td><a href=# id="DISCO_SPEED_DOWN" class="button roundRight"><i class="fas fa-minus"></i></a></td>
+				<td><a href=/extra class="button roundBottom" style="background-color: LightGray; color: #404040"><i class="fas fa-caret-left"></i></a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
