@@ -20,13 +20,19 @@ def extra():
 
 @app.route('/query/<keyName>')
 def keyHandler(keyName):
-	blast(keyName)
+	blast(keyName, "nec")
+	print("Blasted " + keyName)
+	return "nothing"
+
+@app.route('/query/necx/<keyName>')
+def necxKeyHandler(keyName):
+	blast(keyName, "necx")
 	print("Blasted " + keyName)
 	return "nothing"
     
 @app.route('/redirect/<keyName>')
 def redirectHandler(keyName):
-	blast(keyName)
+	blast(keyName, "nec")
 	print("Blasted " + keyName)
 	return index()
     

@@ -1,9 +1,10 @@
 from os import system as cmd
 # Entry point
-def blast(keyName):
-    cmd("/usr/bin/ir-ctl -S nec:" + __decode(keyName) + " -d /dev/lirc0")
+def blast(keyName, protocol):
+    cmd("/usr/bin/ir-ctl -S" + protocol + ":" + __decode(keyName) + " -d /dev/lirc0")
 
 def __decode(keyName):
+	# These are the keys for the TV Remote (nec)
     KEY_BLUE = "0xa000"
     KEY_YELLOW = "0xa001"
     KEY_RECORD = "0xa002"
@@ -61,4 +62,49 @@ def __decode(keyName):
     KEY_VOLUMEDOWN = "0xa05d"
     KEY_SLEEP = "0xa05e"
     KEY_MUTE = "0xa05f"
+    
+    # These are the keys for the RGB light (necx)
+    LIGHT_BRIGHTNESS_UP = "0xef00"
+    LIGHT_BRIGHTNESS_DOWN = "0xef01"
+    LIGHT_OFF = "0xef02"
+    LIGHT_ON = "0xef03"
+    LIGHT_RED = "0xef04"
+    LIGHT_GREEN = "0xef05"
+    LIGHT_BLUE = "0xef06"
+    LIGHT_WHITE = "0xef07"  
+    LIGHT_R1C1 = "0xef08"	# This is the row and column of the colour
+    LIGHT_R1C2 = "0xef09"
+    LIGHT_R1C3 = "0xef0a"
+    LIGHT_FLASH = "0xef0b"
+    LIGHT_R2C1 = "0xef0c"
+    LIGHT_R2C2 = "0xef0d"
+    LIGHT_R2C3 = "0xef0e"
+    LIGHT_STROBE = "0xef0f"
+    LIGHT_R3C1 = "0xef10"
+    LIGHT_R3C2 = "0xef11"
+    LIGHT_R3C3 = "0xef12"
+    LIGHT_FADE = "0xef13"
+    LIGHT_R4C1 = "0xef14"
+    LIGHT_R4C2 = "0xef15"
+    LIGHT_R4C3 = "0xef16"
+    LIGHT_SMOOTH = "0xef17"
+    
+    # These are the keys for the disco ball (nec)
+    DISCO_POWER = "0x45"
+    DISCO_DMX = "0x47"
+    DISCO_SPIN = "0x40"
+    DISCO_MUSIC_1 = "0x07"
+    DISCO_MUSIC_2 = "0x15"
+    DISCO_MUSIC_3 = "0x09"
+    DISCO_FLASH = "0x19"
+    DISCO_A1 = "0x0c"
+    DISCO_A2 = "0x18"
+    DISCO_A3 = "0x5e"
+    DISCO_A4 = "0x08"
+    DISCO_A5 = "0x1c"
+    DISCO_A6 = "0x5a"
+    DISCO_A7 = "0x42"
+    DISCO_SPEED_DOWN = "0x52"
+    DISCO_SPEED_UP = "0x4a"
+    
     return eval(keyName)
