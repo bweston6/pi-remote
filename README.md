@@ -41,7 +41,7 @@ To complete this installation I used [Pi OS Lite](https://downloads.raspberrypi.
 
 	* This will start the server on port 80, so you just need to point a web browser to the Pi's host-name or IP address.
 	
-	* The codes emitted are, by default, for a [JVC LT40C550](https://business.currys.co.uk/catalogue/tv-entertainment/tvs/32-42-inch-tvs/jvc-lt-40c550-40-led-tv/B127240B); so this likely won't work with your TV out of the box.
+	* The codes emitted are, by default, for a [JVC LT40C550](https://business.currys.co.uk/catalogue/tv-entertainment/tvs/32-42-inch-tvs/jvc-lt-40c550-40-led-tv/B127240B); so this likely won't work with your TV out of the box. There are also two more remotes for RGB lights.
 	
 1. To start the web server at boot, you can make a `systemd` service to start it for you. Make the following file as root: `/etc/systemd/system/webRemote.service`, with the following content:
 
@@ -69,7 +69,7 @@ To complete this installation I used [Pi OS Lite](https://downloads.raspberrypi.
 
 ## Receiving Key-Codes and Customisation
 ### Receiving
-This code works great if you have a JVC LT40C550 TV, but you probably don't. To test that your receiver is working and to note the codes and protocol run the following:
+This code works great if you have a JVC LT40C550 TV, or similar RGB lights, but you probably don't. To test that your receiver is working and to note the codes and protocol run the following:
 
 ```shell
 $ sudo ir-keytable -t -p all
@@ -98,7 +98,7 @@ Your TV should respond, and you might be able to see the IR LED flash by looking
 ### Recording Key-Codes
 The `keyCodes` and `keyNames` are recorded in `irBlaster.py`:
 
-* If your protocol is **not** `nec`, then you should change this in the `blast(keyName)` function.
+* Note your remote's protocol as you will have to pass it to the `blast(keyName, protocol)` function in `server.py`.
 * Study the format of the key names in `__decode(keyName)` and enter your own values.
 	
 	The variable names themselves don't matter, but you will call them later via the webpage. Ensure that they are assigned as strings and not as hex like in the file.
@@ -111,7 +111,7 @@ Start by looking at `server.py`:
 * The `@app.route()` is the URL that the code refers to.
 	* Values in `<>` can be taken from the URL as an argument.
 * The `return` value is the webpage that is returned when a particular link is followed.
-* Any code in-between is python code, such as the `blast(keyName)` function, that you want to run.
+* Any code in-between is python code, such as the `blast(keyName, protocol)` function, that you want to run.
 
 In the `templates/` directory are the webpages that `server.py` can refer to. You can see from `templates/index.html` how the Python code is called:
 
@@ -121,4 +121,5 @@ In the `templates/` directory are the webpages that `server.py` can refer to. Yo
 	* `class` - There are some styles at the top that you can apply so the buttons have rounded edges. This helps with grouping.
 	* In-between the `<a...> </a>` tags is the text that you want to appear on the buttons. I'm using [font-awesome](https://fontawesome.com/) icons for most of these. Please make your own account as mine is only free so there are limits.
 * For examples of buttons that redirect, look for `KEY_SUBTITLE`, `KEY_AUDIO` and so on in `templates/extra.html`. These don't have `id`s so that they won't be caught by the JavaScript and link to `/redirect/<keyName>`.
-	* Buttons that don't change the page shouldn't be done like this so that the page doesn't refresh in-between each button press. 
+	* Buttons that don't change the page shouldn't be done like this so that the page doesn't refresh in-between each button press.
+* Ensure that the matching statement in the JavaScript correctly matches the start of your key-names. For example, in `index.html`, `[id^=KEY]` matches IDs (`id`) that start with (`^=`) `KEY`.
